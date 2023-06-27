@@ -98,9 +98,9 @@ export default class Root extends React.Component {
                     style={style.modal}
                     className='ToDoPluginRootModal'
                 >
-                    <h1>{'Add a Todo'}</h1>
+                    <h1>{'Добавить задачу'}</h1>
                     <div className='todoplugin-issue'>
-                        <h2>{'Todo Message'}</h2>
+                        <h2>{'Текст задачи'}</h2>
                         <div className='btn-group'>
                             <button
                                 className={writeButtonClass}
@@ -146,10 +146,10 @@ export default class Root extends React.Component {
                                 checked={this.state.attachToThread}
                                 onChange={this.handleAttachChange}
                             />
-                            <b>{' Add to thread'}</b>
+                            <b>{' Добавить в канал'}</b>
                             <div className='help-text'>
                                 {
-                                    ' Select to have the Todo Bot respond to the thread when the attached todo is added, modified or completed.'
+                                    ' Выберите, чтобы Робот задач отвечал на цепочку, когда прикрепленная задача добавляется, изменяется или завершается.'
                                 }
                             </div>
                         </div>
@@ -161,9 +161,9 @@ export default class Root extends React.Component {
                             onSelected={(selected) =>
                                 this.setState({sendTo: selected?.username})
                             }
-                            label={'Send to user'}
+                            label={'Переслать пользователю'}
                             helpText={
-                                'Select a user if you want to send this todo.'
+                                'Выберите пользователя, если хотите отправить это задание.'
                             }
                             placeholder={''}
                             theme={theme}
@@ -178,25 +178,25 @@ export default class Root extends React.Component {
                             onClick={this.submit}
                             disabled={!message}
                         >
-                            {'Add Todo'}
+                            {'Добавить задачу'}
                         </button>
                     </div>
                     <div className='todoplugin-divider'/>
                     <div className='todoplugin-clarification'>
                         <div className='todoplugin-question'>
-                            {'What does this do?'}
+                            {'Что это делает?'}
                         </div>
                         <div className='todoplugin-answer'>
                             {
-                                'Adding a Todo will add an issue to your Todo list. You will get daily reminders about your Todo issues until you mark them as complete.'
+                                'Добавление задачи добавит задачу в ваш список задач. Вы будете получать ежедневные напоминания о проблемах в Todo, пока не отметите их как завершенные.'
                             }
                         </div>
                         <div className='todoplugin-question'>
-                            {'How is this different from flagging a post?'}
+                            {'Чем это отличается от пометки поста?'}
                         </div>
                         <div className='todoplugin-answer'>
                             {
-                                'Todo issues are disconnected from posts. You can generate Todo issues from posts but they have no other assoication to the posts. This allows for a cleaner Todo list that does not rely on post history or someone else not deleting or editing the post.'
+                                'Задачи отключены от сообщений. Вы можете создавать задачи из сообщений, но они не имеют никакой другой связи с сообщениями. Это позволяет создать более чистый список задач, который не зависит от истории сообщений или от того, что кто-то еще не удалил или не отредактировал сообщение.'
                             }
                         </div>
                     </div>

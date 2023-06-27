@@ -67,7 +67,7 @@ func (l *listManager) AddIssue(userID, message, description, postID string) (*Is
 
 	if err := l.store.AddReference(userID, issue.ID, MyListKey, "", ""); err != nil {
 		if rollbackError := l.store.RemoveIssue(issue.ID); rollbackError != nil {
-			l.api.LogError("cannot rollback issue after add error, Err=", err.Error())
+			l.api.LogError("не удается откатить проблему после добавления ошибки, Err=", err.Error())
 		}
 		return nil, err
 	}

@@ -19,9 +19,9 @@ function ToDoIssues(props) {
     let emptyState = (
         <div style={style.completed.container}>
             <Tada/>
-            <h3 style={style.completed.title}>{'All tasks completed'}</h3>
+            <h3 style={style.completed.title}>{'Все задачи выполнены'}</h3>
             <p style={style.completed.subtitle}>
-                {'Nicely done, you\'ve finished all of your tasks! Why not reward yourself with a little break?'}
+                {'Поздравляю! Все задачи решены. Как насчёт кофе?'}
             </p>
         </div>
     );

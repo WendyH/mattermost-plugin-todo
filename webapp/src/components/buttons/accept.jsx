@@ -9,7 +9,7 @@ const AcceptButton = (props) => {
             emphasis={'secondary'}
             onClick={() => props.accept(props.issueId)}
         >
-            {'Add to my list'}
+            {'Добавить в мой список'}
         </Button>
     );
 };

@@ -90,12 +90,12 @@ export default class SidebarRight extends React.PureComponent {
     }
 
     toggleInbox() {
-        this.props.actions.telemetry('toggle_inbox', {action: this.state.showInbox ? 'collapse' : 'expand'});
+        this.props.actions.telemetry('toggle_inbox', {action: this.state.showInbox ? 'свернуть' : 'развернуть'});
         this.setState({showInbox: !this.state.showInbox});
     }
 
     toggleMy() {
-        this.props.actions.telemetry('toggle_my', {action: this.state.showMy ? 'collapse' : 'expand'});
+        this.props.actions.telemetry('toggle_my', {action: this.state.showMy ? 'свернуть' : 'развернуть'});
         this.setState({showMy: !this.state.showMy});
     }
 
@@ -148,20 +148,20 @@ export default class SidebarRight extends React.PureComponent {
     render() {
         const style = getStyle();
         let todos = [];
-        let listHeading = 'My Todos';
+        let listHeading = 'Мои задачи';
         let addButton = '';
         let inboxList = [];
 
         switch (this.state.list) {
         case MyListName:
             todos = this.props.todos || [];
-            addButton = 'Add Todo';
+            addButton = 'Добавить задачу';
             inboxList = this.props.inTodos || [];
             break;
         case OutListName:
             todos = this.props.outTodos || [];
-            listHeading = 'Sent Todos';
-            addButton = 'Request a Todo from someone';
+            listHeading = 'Переслать задачу';
+            addButton = 'Запросить задачу от кого-либо';
             break;
         }
 
@@ -186,7 +186,7 @@ export default class SidebarRight extends React.PureComponent {
                         onClick={() => this.toggleInbox()}
                     >
                         {actionName}
-                        <div>{`Incoming Todos (${inboxList.length})`}</div>
+                        <div>{`Входящие задачи (${inboxList.length})`}</div>
                     </div>
                     {this.state.showInbox ?
                         <ToDoIssues
@@ -252,11 +252,11 @@ export default class SidebarRight extends React.PureComponent {
                                 <MenuItem
                                     onClick={() => this.openList(MyListName)}
                                     action={() => this.openList(MyListName)}
-                                    text={'My Todos'}
+                                    text={'Мои задачи'}
                                 />
                                 <MenuItem
                                     action={() => this.openList(OutListName)}
-                                    text={'Sent Todos'}
+                                    text={'Переданные задачи'}
                                 />
                             </Menu>
                         </MenuWrapper>

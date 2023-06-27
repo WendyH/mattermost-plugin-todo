@@ -27,7 +27,7 @@ function TodoItem(props) {
     const [editTodo, setEditTodo] = useState(false);
     const [message, setMessage] = useState(issue.message);
     const [description, setDescription] = useState(issue.description);
-    const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const MONTHS = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
     const [hidden, setHidden] = useState(false);
     const date = new Date(issue.create_at);
     const year = date.getFullYear();
@@ -55,18 +55,18 @@ function TodoItem(props) {
     const issueDescription = PostUtils.messageHtmlToComponent(htmlFormattedDescription);
 
     let listPositionMessage = '';
-    let createdMessage = 'Created ';
+    let createdMessage = 'Создано ';
     if (issue.user) {
         if (issue.list === '') {
-            createdMessage = 'Sent to ' + issue.user;
+            createdMessage = 'Отправлено ' + issue.user;
             listPositionMessage =
-                'Accepted. On position ' + (issue.position + 1) + '.';
+                'Принято. Позиция в списке: ' + (issue.position + 1);
         } else if (issue.list === 'in') {
-            createdMessage = 'Sent to ' + issue.user;
+            createdMessage = 'Отправлено ' + issue.user;
             listPositionMessage =
-                'In Inbox on position ' + (issue.position + 1) + '.';
+                'Во входящих на позиции ' + (issue.position + 1) + '.';
         } else if (issue.list === 'out') {
-            createdMessage = 'Received from ' + issue.user;
+            createdMessage = 'Принято от ' + issue.user;
             listPositionMessage = '';
         }
     }
@@ -138,7 +138,7 @@ function TodoItem(props) {
     );
 
     const removeTodo = useCallback(() => {
-        openTodoToast({icon: 'trash-can-outline', message: 'Todo deleted', undo: undoRemoveTodo});
+        openTodoToast({icon: 'trash-can-outline', message: 'Задача удалена', undo: undoRemoveTodo});
         setHidden(true);
         removeTimeout.current = setTimeout(() => {
             remove(issue.id);
@@ -168,7 +168,7 @@ function TodoItem(props) {
                             <div>
                                 <TextareaAutosize
                                     style={style.textareaResizeMessage}
-                                    placeholder='Enter a title'
+                                    placeholder='Введите заголовок'
                                     value={message}
                                     autoFocus={true}
                                     onKeyDown={(e) => onKeyDown(e)}
@@ -176,7 +176,7 @@ function TodoItem(props) {
                                 />
                                 <TextareaAutosize
                                     style={style.textareaResizeDescription}
-                                    placeholder='Enter a description'
+                                    placeholder='Введите описание'
                                     value={description}
                                     onKeyDown={(e) => onKeyDown(e)}
                                     onChange={(e) => setDescription(e.target.value)}
@@ -200,7 +200,7 @@ function TodoItem(props) {
                                         className='light'
                                         style={style.subtitle}
                                     >
-                                        {createdMessage + ' on ' + formattedDate + ' at ' + formattedTime}
+                                        {createdMessage + ' на ' + formattedDate + ' в ' + formattedTime}
                                     </div>
                                 )}
                                 {listPositionMessage && listDiv}
@@ -217,25 +217,25 @@ function TodoItem(props) {
                             {canAccept(list) && (
                                 <MenuItem
                                     action={() => accept(issue.id)}
-                                    text='Accept todo'
+                                    text='Принять задачу'
                                     icon='check'
                                 />
                             )}
                             {canBump(list, issue.list) && (
                                 <MenuItem
-                                    text='Bump'
+                                    text='Отклонить'
                                     icon='bell-outline'
                                     action={() => bump(issue.id)}
                                 />
                             )}
                             <MenuItem
-                                text='Edit todo'
+                                text='Редактировать задачу'
                                 icon='pencil-outline'
                                 action={() => setEditTodo(true)}
                                 shortcut='e'
                             />
                             <MenuItem
-                                text='Assign to…'
+                                text='Назначить пользователю…'
                                 icon='account-plus-outline'
                                 action={editAssignee}
                                 shortcut='a'
@@ -243,7 +243,7 @@ function TodoItem(props) {
                             {canRemove(list, issue.list) && (
                                 <MenuItem
                                     action={removeTodo}
-                                    text='Delete todo'
+                                    text='Удалить задачу'
                                     icon='trash-can-outline'
                                     shortcut='d'
                                 />
@@ -270,7 +270,7 @@ function TodoItem(props) {
                         size='small'
                         onClick={saveEditedTodo}
                     >
-                        {'Save'}
+                        {'Сохранить'}
                     </Button>
                 </div>
             )}
