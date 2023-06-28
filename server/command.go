@@ -102,7 +102,7 @@ func (p *Plugin) postCommandResponse(args *model.CommandArgs, text string) {
 }
 
 // ExecuteCommand executes a given command and returns a command response.
-func (p *Plugin) ExecuteCommand(c *plugin.Context, args *model.CommandArgs) (*model.CommandResponse, *model.AppError) {
+func (p *Plugin) ExecuteCommand(_ *plugin.Context, args *model.CommandArgs) (*model.CommandResponse, *model.AppError) {
 	spaceRegExp := regexp.MustCompile(`\s+`)
 	trimmedArgs := spaceRegExp.ReplaceAllString(strings.TrimSpace(args.Command), " ")
 	stringArgs := strings.Split(trimmedArgs, " ")
@@ -287,7 +287,7 @@ func (p *Plugin) runListCommand(args []string, extra *model.CommandArgs) (bool, 
 	return false, nil
 }
 
-func (p *Plugin) runPopCommand(args []string, extra *model.CommandArgs) (bool, error) {
+func (p *Plugin) runPopCommand(_ []string, extra *model.CommandArgs) (bool, error) {
 	issue, foreignID, err := p.listManager.PopIssue(extra.UserId)
 	if err != nil {
 		if err.Error() == "cannot find issue" {
@@ -359,12 +359,12 @@ func (p *Plugin) runSettingsCommand(args []string, extra *model.CommandArgs) (bo
 		switch args[1] {
 		case on:
 			err = p.saveReminderPreference(extra.UserId, true)
-			responseMessage = "Вы включили ежедневные напоминания по предстоящим задачам."
+			responseMessage = "вы включили ежедневные напоминания по предстоящим задачам."
 		case off:
 			err = p.saveReminderPreference(extra.UserId, false)
-			responseMessage = "Вы выключили ежедневные напоминания по предстоящим задачам."
+			responseMessage = "вы выключили ежедневные напоминания по предстоящим задачам."
 		default:
-			responseMessage = "Неверно переданные параметры для \"settings summary\". Должно быть `on` или `off`"
+			responseMessage = "неверно переданные параметры для \"settings summary\". Должно быть `on` или `off`"
 			return true, errors.New(responseMessage)
 		}
 

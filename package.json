@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jest-canvas-mock": "^2.5.2",
+    "sass": "^1.63.6"
+  }
+}
