@@ -68,7 +68,7 @@ const AssigneeModal = (
             style={style.backdrop}
         >
             <div style={style.modal}>
-                <h1 style={style.heading}>{'Assign todo to…'}</h1>
+                <h1 style={style.heading}>{'Назначить задачу …'}</h1>
                 <IconButton
                     size='medium'
                     style={style.closeIcon}
@@ -92,7 +92,7 @@ const AssigneeModal = (
                         size='medium'
                         onClick={closeModal}
                     >
-                        {'Cancel'}
+                        {'Отмена'}
                     </Button>
                     <Button
                         emphasis='primary'
@@ -100,7 +100,7 @@ const AssigneeModal = (
                         onClick={submit}
                         disabled={!assignee}
                     >
-                        {'Assign'}
+                        {'Назначить'}
                     </Button>
                 </div>
             </div>

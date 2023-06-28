@@ -143,7 +143,7 @@ export default class AddIssue extends React.PureComponent {
                                 <React.Fragment>
                                     <TextareaAutosize
                                         style={style.textareaResizeMessage}
-                                        placeholder='Enter a title'
+                                        placeholder='Введите заголовок'
                                         autoFocus={true}
                                         onKeyDown={(e) => this.onKeyDown(e)}
                                         value={message}
@@ -155,7 +155,7 @@ export default class AddIssue extends React.PureComponent {
                                     />
                                     <TextareaAutosize
                                         style={style.textareaResizeDescription}
-                                        placeholder='Enter a description'
+                                        placeholder='Введите описание'
                                         onKeyDown={(e) => this.onKeyDown(e)}
                                         value={description}
                                         onChange={(e) =>
@@ -175,11 +175,11 @@ export default class AddIssue extends React.PureComponent {
                                         checked={this.state.attachToThread}
                                         onChange={this.handleAttachChange}
                                     />
-                                    <b>{' Add to thread'}</b>
+                                    <b>{' Добавить в канал чата'}</b>
                                 </label>
                                 <div className='help-text'>
                                     {
-                                        'Select to have the Todo Bot respond to the thread when the attached todo is added, modified or completed.'
+                                        'Выберите, чтобы Робот задач отвечал в чате, когда прикрепленная задача добавляется, изменяется или завершается.'
                                     }
                                 </div>
                             </div>
@@ -191,7 +191,7 @@ export default class AddIssue extends React.PureComponent {
                                     icon={<CompassIcon icon='account-outline'/>}
                                     onClick={() => this.props.openAssigneeModal('')}
                                 >
-                                    {'Assign to…'}
+                                    {'Назначить …'}
                                 </Chip>
                             )}
                             {assignee && (
@@ -221,9 +221,9 @@ export default class AddIssue extends React.PureComponent {
                                         sendTo: selected?.username,
                                     })
                                 }
-                                label={'Send to user'}
+                                label={'Назначить пользователю'}
                                 helpText={
-                                    'Select a user if you want to send this todo.'
+                                    'Выберите пользователя, если вы хотите отправить это задание.'
                                 }
                                 placeholder={''}
                                 theme={theme}
@@ -240,7 +240,7 @@ export default class AddIssue extends React.PureComponent {
                         size='small'
                         onClick={this.close}
                     >
-                        {'Cancel'}
+                        {'Отмена'}
                     </Button>
                     <Button
                         emphasis='primary'
@@ -248,7 +248,7 @@ export default class AddIssue extends React.PureComponent {
                         onClick={this.submit}
                         disabled={!message}
                     >
-                        {'Save'}
+                        {'Сохранить'}
                     </Button>
                 </div>
             </div>

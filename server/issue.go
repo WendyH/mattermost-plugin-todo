@@ -36,14 +36,14 @@ func newIssue(message string, description, postID string) *Issue {
 
 func issuesListToString(issues []*ExtendedIssue) string {
 	if len(issues) == 0 {
-		return "Nothing to do!"
+		return "Делать нечего!"
 	}
 
 	str := "\n\n"
 
 	for _, issue := range issues {
 		createAt := time.Unix(issue.CreateAt/1000, 0)
-		str += fmt.Sprintf("* %s\n  * (%s)\n", issue.Message, createAt.Format("January 2, 2006 at 15:04"))
+		str += fmt.Sprintf("* %s\n  * (%s)\n", issue.Message, createAt.Format("Monday, 02 January 2006 15:04"))
 	}
 
 	return str

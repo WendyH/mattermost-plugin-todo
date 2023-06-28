@@ -160,8 +160,8 @@ export default class SidebarRight extends React.PureComponent {
             break;
         case OutListName:
             todos = this.props.outTodos || [];
-            listHeading = 'Переслать задачу';
-            addButton = 'Запросить задачу от кого-либо';
+            listHeading = 'Исходящие задачи';
+            addButton = 'Назначить задачу кому-либо';
             break;
         }
 
@@ -221,7 +221,7 @@ export default class SidebarRight extends React.PureComponent {
                     onClick={() => this.toggleMy()}
                 >
                     {actionName}
-                    {`My Todos (${todos.length})`}
+                    {`Мои задачи (${todos.length})`}
                 </div>
             );
         }
@@ -256,7 +256,7 @@ export default class SidebarRight extends React.PureComponent {
                                 />
                                 <MenuItem
                                     action={() => this.openList(OutListName)}
-                                    text={'Переданные задачи'}
+                                    text={'Исходящие задачи'}
                                 />
                             </Menu>
                         </MenuWrapper>

@@ -75,8 +75,8 @@ func (p *Plugin) OnActivate() error {
 
 	botID, err := p.Helpers.EnsureBot(&model.Bot{
 		Username:    "todo",
-		DisplayName: "Робот задач",
-		Description: "Создан для команд по созданию задач.",
+		DisplayName: "Задачи",
+		Description: "Создан для выполнения команд по созданию задач.",
 	})
 	if err != nil {
 		return errors.Wrap(err, "failed to ensure todo bot")
@@ -305,11 +305,11 @@ func (p *Plugin) handleList(w http.ResponseWriter, r *http.Request) {
 		nt := time.Unix(now/1000, 0).In(timezone)
 		lt := time.Unix(lastReminderAt/1000, 0).In(timezone)
 		if nt.Sub(lt).Hours() >= 1 && (nt.Day() != lt.Day() || nt.Month() != lt.Month() || nt.Year() != lt.Year()) {
-			p.PostBotDM(userID, "Daily Reminder:\n\n"+issuesListToString(issues))
+			p.PostBotDM(userID, "Ежедневное напоминание:\n\n"+issuesListToString(issues))
 			p.trackDailySummary(userID)
 			err = p.saveLastReminderTimeForUser(userID)
 			if err != nil {
-				p.API.LogError("Unable to save last reminder for user err=" + err.Error())
+				p.API.LogError("Не удалось сохранить последнее напоминание для пользователя err=" + err.Error())
 			}
 		}
 	}

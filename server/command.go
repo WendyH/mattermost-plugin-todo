@@ -61,19 +61,19 @@ help
 
 func getSummarySetting(flag bool) string {
 	if flag {
-		return "Reminder setting is set to `on`. **You will receive daily reminders.**"
+		return "Настройка напоминания включена. **Вы будете получать ежедневные напоминания.**"
 	}
-	return "Reminder setting is set to `off`. **You will not receive daily reminders.**"
+	return "Настройка напоминания выключена. **Вы не будете получать ежедневные напоминания.**"
 }
 func getAllowIncomingTaskRequestsSetting(flag bool) string {
 	if flag {
-		return "Allow incoming task requests setting is set to `on`. **Other users can send you task request that you can accept/decline.**"
+		return "Параметр «Разрешить входящие запросы задач» установлен на «включено». **Другие пользователи могут отправлять вам запросы на выполнение задач, которые вы можете принять/отклонить.**"
 	}
-	return "Allow incoming task requests setting is set to `off`. **Other users cannot send you task request. They will see a message saying you don't accept Todo requests.**"
+	return "Для параметра Разрешить входящие запросы задач установлено значение «Выкл». **Другие пользователи не могут отправить вам запрос задачи. Они увидят сообщение о том, что вы не принимаете запросы задач.**"
 }
 
 func getAllSettings(summaryFlag, blockIncomingFlag bool) string {
-	return fmt.Sprintf(`Current Settings:
+	return fmt.Sprintf(`Текущие настройки:
 
 %s
 %s
@@ -83,8 +83,8 @@ func getAllSettings(summaryFlag, blockIncomingFlag bool) string {
 func getCommand() *model.Command {
 	return &model.Command{
 		Trigger:          "todo",
-		DisplayName:      "Робот задач",
-		Description:      "Работа со списков ваших задач.",
+		DisplayName:      "Задачи",
+		Description:      "Работа со списком ваших задач.",
 		AutoComplete:     true,
 		AutoCompleteDesc: "Доступные команды: add, list, pop, send, help",
 		AutoCompleteHint: "[command]",
@@ -133,7 +133,7 @@ func (p *Plugin) ExecuteCommand(_ *plugin.Context, args *model.CommandArgs) (*mo
 			if command == "help" {
 				p.trackCommand(args.UserId, command)
 			} else {
-				p.trackCommand(args.UserId, "not found")
+				p.trackCommand(args.UserId, "команда не найдена")
 			}
 			p.postCommandResponse(args, getHelp())
 			return &model.CommandResponse{}, nil
@@ -441,8 +441,8 @@ func getAutocompleteData() *model.AutocompleteData {
 	todo.AddCommand(pop)
 
 	send := model.NewAutocompleteData("send", "[user] [todo]", "Посылает задачу указанному пользователю")
-	send.AddTextArgument("Whom to send", "[@awesomePerson]", "")
-	send.AddTextArgument("Todo message", "[message]", "")
+	send.AddTextArgument("Кому направить", "[@awesomePerson]", "")
+	send.AddTextArgument("Сообщение задачи", "[message]", "")
 	todo.AddCommand(send)
 
 	settings := model.NewAutocompleteData("settings", "[setting] [on] [off]", "Включает настройку пользователя")
@@ -462,7 +462,7 @@ func getAutocompleteData() *model.AutocompleteData {
 	settings.AddCommand(allowIncomingTask)
 	todo.AddCommand(settings)
 
-	help := model.NewAutocompleteData("help", "", "Display usage")
+	help := model.NewAutocompleteData("help", "", "Показать примеры использования")
 	todo.AddCommand(help)
 	return todo
 }

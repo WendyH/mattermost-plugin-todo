@@ -34,7 +34,7 @@ export default class PostTypeTodo extends React.PureComponent {
     render() {
         const style = getStyle(this.props.theme);
 
-        const preText = 'Automated message';
+        const preText = 'Автоматическое сообщение';
 
         const titleHTMLFormattedText = PostUtils.formatText(this.props.post.props.message, {siteURL: this.props.siteURL});
         const title = PostUtils.messageHtmlToComponent(titleHTMLFormattedText);

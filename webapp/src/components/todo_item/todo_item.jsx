@@ -37,7 +37,7 @@ function TodoItem(props) {
     const minutes = '0' + date.getMinutes();
     const seconds = '0' + date.getSeconds();
     const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    const formattedDate = month + ' ' + day + ', ' + year;
+    const formattedDate = day + ' ' + month + ' ' + year;
 
     const style = getStyle(theme);
 
@@ -107,7 +107,7 @@ function TodoItem(props) {
     const removeTimeout = useRef(null);
 
     const completeToast = useCallback(() => {
-        openTodoToast({icon: 'check', message: 'Todo completed', undo: undoCompleteTodo});
+        openTodoToast({icon: 'check', message: 'Задача выполнена', undo: undoCompleteTodo});
 
         setHidden(true);
 
@@ -200,7 +200,7 @@ function TodoItem(props) {
                                         className='light'
                                         style={style.subtitle}
                                     >
-                                        {createdMessage + ' на ' + formattedDate + ' в ' + formattedTime}
+                                        {createdMessage + ' ' + formattedDate + ' в ' + formattedTime}
                                     </div>
                                 )}
                                 {listPositionMessage && listDiv}
@@ -229,13 +229,13 @@ function TodoItem(props) {
                                 />
                             )}
                             <MenuItem
-                                text='Редактировать задачу'
+                                text='Редактировать'
                                 icon='pencil-outline'
                                 action={() => setEditTodo(true)}
                                 shortcut='e'
                             />
                             <MenuItem
-                                text='Назначить пользователю…'
+                                text='Назначить …'
                                 icon='account-plus-outline'
                                 action={editAssignee}
                                 shortcut='a'
@@ -243,7 +243,7 @@ function TodoItem(props) {
                             {canRemove(list, issue.list) && (
                                 <MenuItem
                                     action={removeTodo}
-                                    text='Удалить задачу'
+                                    text='Удалить'
                                     icon='trash-can-outline'
                                     shortcut='d'
                                 />

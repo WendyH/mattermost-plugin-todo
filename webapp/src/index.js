@@ -19,7 +19,7 @@ const activityTimeout = 60 * 60 * 1000; // 1 hour
 
 export default class Plugin {
     initialize(registry, store) {
-        const {toggleRHSPlugin, showRHSPlugin} = registry.registerRightHandSidebarComponent(SidebarRight, 'Todo List');
+        const {toggleRHSPlugin, showRHSPlugin} = registry.registerRightHandSidebarComponent(SidebarRight, 'Список задач');
 
         registry.registerReducer(reducer);
         registry.registerRootComponent(Root);
@@ -44,7 +44,7 @@ export default class Plugin {
                 store.dispatch(toggleRHSPlugin);
             },
             'Todo',
-            'Open your list of Todo issues',
+            'Откройте свой список задач',
         );
 
         const getFrontendListName = (backendListName) => {

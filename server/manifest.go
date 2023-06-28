@@ -12,13 +12,13 @@ var manifest *model.Manifest
 
 const manifestStr = `
 {
-  "id": "com.mattermost.plugin-todo",
-  "name": "Todo",
-  "description": "This plugin makes it easy to keep track of Todo issues and get daily reminders.",
-  "homepage_url": "https://github.com/mattermost/mattermost-plugin-todo",
-  "support_url": "https://github.com/mattermost/mattermost-plugin-todo/issues",
-  "release_notes_url": "https://github.com/mattermost/mattermost-plugin-todo/releases/tag/v0.7.0",
-  "version": "0.7.0",
+  "id": "com.mattermost.plugin-todo-rus",
+  "name": "Задачи",
+  "description": "Этот плагин позволяет легко отслеживать задания и получать ежедневные напоминания.",
+  "homepage_url": "https://github.com/WendyH/mattermost-plugin-todo",
+  "support_url": "https://github.com/WendyH/mattermost-plugin-todo/issues",
+  "release_notes_url": "https://github.com/WendyH/mattermost-plugin-todo/releases",
+  "version": "0.7.0.1",
   "min_server_version": "6.5.0",
   "server": {
     "executables": {
@@ -37,9 +37,9 @@ const manifestStr = `
     "settings": [
       {
         "key": "hide_team_sidebar",
-        "display_name": "Hide team sidebar buttons:",
+        "display_name": "Скрыть кнопки боковой панели команды:",
         "type": "bool",
-        "help_text": "When true, the buttons in the team sidebar on the left toolbar will be hidden.",
+        "help_text": "Когда включено - кнопки на боковой панели команды на левой панели инструментов будут скрыты.",
         "placeholder": "",
         "default": null
       }
