@@ -41,9 +41,21 @@ func issuesListToString(issues []*ExtendedIssue) string {
 
 	str := "\n\n"
 
+	MONTHS := [12]string{"Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"}
+
 	for _, issue := range issues {
 		createAt := time.Unix(issue.CreateAt/1000, 0)
-		str += fmt.Sprintf("* %s\n  * (%s)\n", issue.Message, createAt.Format("Monday, 02 January 2006 15:04"))
+
+		year := createAt.Year()
+		month := MONTHS[int(createAt.Month())]
+		day := createAt.Day()
+		hours := fmt.Sprintf("0%d", createAt.Hour())
+		minutes := fmt.Sprintf("0%d", createAt.Minute())
+		seconds := fmt.Sprintf("0%d", createAt.Second())
+
+		formattedTime := fmt.Sprintf("%d %s %d %s:%s:%s", day, month, year, string(hours[len(hours)-2:]), string(minutes[len(minutes)-2:]), string(minutes[len(seconds)-2:]))
+
+		str += fmt.Sprintf("* %s\n  * (%s)\n", issue.Message, formattedTime)
 	}
 
 	return str
