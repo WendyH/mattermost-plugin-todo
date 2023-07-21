@@ -77,7 +77,7 @@ export default class Plugin {
         registry.registerAppBarComponent(
             iconURL,
             () => store.dispatch(toggleRHSPlugin),
-            'Open your list of Todo issues',
+            'Открыть ваш список задач',
         );
 
         registry.registerWebSocketEventHandler(`custom_${pluginId}_refresh`, refresh);

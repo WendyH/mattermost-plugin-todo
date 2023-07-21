@@ -75,8 +75,8 @@ func (p *Plugin) OnActivate() error {
 
 	botID, err := p.Helpers.EnsureBot(&model.Bot{
 		Username:    "todo",
-		DisplayName: "Задачи",
-		Description: "Создан для выполнения команд по созданию задач.",
+		DisplayName: "Робот задач",
+		Description: "Для выполнения команд по созданию задач.",
 	})
 	if err != nil {
 		return errors.Wrap(err, "failed to ensure todo bot")
@@ -195,7 +195,7 @@ func (p *Plugin) handleAdd(w http.ResponseWriter, r *http.Request) {
 
 		p.sendRefreshEvent(userID, []string{MyListKey})
 
-		replyMessage := fmt.Sprintf("@%s attached a todo to this thread", senderName)
+		replyMessage := fmt.Sprintf("@%s прикрепил задачу к этой теме", senderName)
 		p.postReplyIfNeeded(addRequest.PostID, replyMessage, addRequest.Message)
 
 		return
@@ -220,7 +220,7 @@ func (p *Plugin) handleAdd(w http.ResponseWriter, r *http.Request) {
 
 		p.sendRefreshEvent(userID, []string{MyListKey})
 
-		replyMessage := fmt.Sprintf("@%s attached a todo to this thread", senderName)
+		replyMessage := fmt.Sprintf("@%s прикрепил задачу к этой теме", senderName)
 		p.postReplyIfNeeded(addRequest.PostID, replyMessage, addRequest.Message)
 		return
 	}
@@ -231,7 +231,7 @@ func (p *Plugin) handleAdd(w http.ResponseWriter, r *http.Request) {
 		receiverAllowIncomingTaskRequestsPreference = true
 	}
 	if !receiverAllowIncomingTaskRequestsPreference {
-		replyMessage := fmt.Sprintf("@%s has blocked Todo requests", receiver.Username)
+		replyMessage := fmt.Sprintf("@%s заблокировал запросы задач", receiver.Username)
 		p.PostBotDM(userID, replyMessage)
 		return
 	}
@@ -248,10 +248,10 @@ func (p *Plugin) handleAdd(w http.ResponseWriter, r *http.Request) {
 	p.sendRefreshEvent(userID, []string{OutListKey})
 	p.sendRefreshEvent(receiver.Id, []string{InListKey})
 
-	receiverMessage := fmt.Sprintf("You have received a new Todo from @%s", senderName)
+	receiverMessage := fmt.Sprintf("Вы получили новую задачу от @%s", senderName)
 	p.PostBotCustomDM(receiver.Id, receiverMessage, addRequest.Message, issueID)
 
-	replyMessage := fmt.Sprintf("@%s sent @%s a todo attached to this thread", senderName, addRequest.SendTo)
+	replyMessage := fmt.Sprintf("@%s отправил @%s задачу, прикрепленную к этой теме", senderName, addRequest.SendTo)
 	p.postReplyIfNeeded(addRequest.PostID, replyMessage, addRequest.Message)
 }
 
@@ -369,7 +369,7 @@ func (p *Plugin) handleEdit(w http.ResponseWriter, r *http.Request) {
 		p.sendRefreshEvent(foreignUserID, lists)
 
 		userName := p.listManager.GetUserName(userID)
-		message := fmt.Sprintf("@%s modified a Todo from:\n%s\nTo:\n%s", userName, oldMessage, editRequest.Message)
+		message := fmt.Sprintf("@%s изменил задачу с:\n%s\nна:\n%s", userName, oldMessage, editRequest.Message)
 		p.PostBotDM(foreignUserID, message)
 	}
 }
@@ -421,12 +421,12 @@ func (p *Plugin) handleChangeAssignment(w http.ResponseWriter, r *http.Request) 
 	userName := p.listManager.GetUserName(userID)
 	if receiver.Id != userID {
 		p.sendRefreshEvent(receiver.Id, []string{InListKey})
-		receiverMessage := fmt.Sprintf("You have received a new Todo from @%s", userName)
+		receiverMessage := fmt.Sprintf("Вы получили новую задачу от @%s", userName)
 		p.PostBotCustomDM(receiver.Id, receiverMessage, issueMessage, changeRequest.ID)
 	}
 	if oldOwner != "" {
 		p.sendRefreshEvent(oldOwner, []string{InListKey, MyListKey})
-		oldOwnerMessage := fmt.Sprintf("@%s removed you from Todo:\n%s", userName, issueMessage)
+		oldOwnerMessage := fmt.Sprintf("@%s удалил вас из задачи:\n%s", userName, issueMessage)
 		p.PostBotDM(oldOwner, oldOwnerMessage)
 	}
 }
@@ -463,7 +463,7 @@ func (p *Plugin) handleAccept(w http.ResponseWriter, r *http.Request) {
 	p.sendRefreshEvent(sender, []string{OutListKey})
 
 	userName := p.listManager.GetUserName(userID)
-	message := fmt.Sprintf("@%s accepted a Todo you sent: %s", userName, todoMessage)
+	message := fmt.Sprintf("@%s принял отправленное вами задание: %s", userName, todoMessage)
 	p.PostBotDM(sender, message)
 }
 
@@ -498,7 +498,7 @@ func (p *Plugin) handleComplete(w http.ResponseWriter, r *http.Request) {
 	p.trackCompleteIssue(userID)
 
 	userName := p.listManager.GetUserName(userID)
-	replyMessage := fmt.Sprintf("@%s completed a todo attached to this thread", userName)
+	replyMessage := fmt.Sprintf("@%s выполнил задачу, прикрепленную к этой теме", userName)
 	p.postReplyIfNeeded(issue.PostID, replyMessage, issue.Message)
 
 	if foreignID == "" {
@@ -507,7 +507,7 @@ func (p *Plugin) handleComplete(w http.ResponseWriter, r *http.Request) {
 
 	p.sendRefreshEvent(foreignID, []string{OutListKey})
 
-	message := fmt.Sprintf("@%s completed a Todo you sent: %s", userName, issue.Message)
+	message := fmt.Sprintf("@%s выполнил отправленное вами задание: %s", userName, issue.Message)
 	p.PostBotDM(foreignID, message)
 }
 
@@ -542,7 +542,7 @@ func (p *Plugin) handleRemove(w http.ResponseWriter, r *http.Request) {
 	p.trackRemoveIssue(userID)
 
 	userName := p.listManager.GetUserName(userID)
-	replyMessage := fmt.Sprintf("@%s removed a todo attached to this thread", userName)
+	replyMessage := fmt.Sprintf("@%s удалил задачу, прикрепленную к этой теме", userName)
 	p.postReplyIfNeeded(issue.PostID, replyMessage, issue.Message)
 
 	if foreignID == "" {
@@ -551,9 +551,9 @@ func (p *Plugin) handleRemove(w http.ResponseWriter, r *http.Request) {
 
 	list := InListKey
 
-	message := fmt.Sprintf("@%s removed a Todo you received: %s", userName, issue.Message)
+	message := fmt.Sprintf("@%s удалил полученное вами задание: %s", userName, issue.Message)
 	if isSender {
-		message = fmt.Sprintf("@%s declined a Todo you sent: %s", userName, issue.Message)
+		message = fmt.Sprintf("@%s отклонил отправленное вами задание: %s", userName, issue.Message)
 		list = OutListKey
 	}
 
@@ -598,7 +598,7 @@ func (p *Plugin) handleBump(w http.ResponseWriter, r *http.Request) {
 	p.sendRefreshEvent(foreignUser, []string{InListKey})
 
 	userName := p.listManager.GetUserName(userID)
-	message := fmt.Sprintf("@%s bumped a Todo you received.", userName)
+	message := fmt.Sprintf("@%s напомнил о задаче, которую вы получили.", userName)
 	p.PostBotCustomDM(foreignUser, message, todoMessage, foreignIssueID)
 }
 

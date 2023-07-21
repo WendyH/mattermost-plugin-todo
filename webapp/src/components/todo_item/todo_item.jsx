@@ -223,7 +223,7 @@ function TodoItem(props) {
                             )}
                             {canBump(list, issue.list) && (
                                 <MenuItem
-                                    text='Отклонить'
+                                    text='Напомнить'
                                     icon='bell-outline'
                                     action={() => bump(issue.id)}
                                 />
@@ -263,7 +263,7 @@ function TodoItem(props) {
                         size='small'
                         onClick={() => setEditTodo(false)}
                     >
-                        {'Cancel'}
+                        {'Отмена'}
                     </Button>
                     <Button
                         emphasis='primary'

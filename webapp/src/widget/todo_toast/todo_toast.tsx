@@ -64,7 +64,7 @@ function TodoToast(props: Props): JSX.Element {
                         onClick={undoTodo}
                         className='TodoToast__undo'
                     >
-                        {'Undo'}
+                        {'Отменить действие'}
                     </button>
                 </div>
                 <IconButton

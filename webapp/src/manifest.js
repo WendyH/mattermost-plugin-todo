@@ -8,7 +8,7 @@ const manifest = JSON.parse(`
     "homepage_url": "https://github.com/WendyH/mattermost-plugin-todo",
     "support_url": "https://github.com/WendyH/mattermost-plugin-todo/issues",
     "release_notes_url": "https://github.com/WendyH/mattermost-plugin-todo/releases/tag/0.7.0",
-    "version": "0.7.0",
+    "version": "0.7.0.r",
     "min_server_version": "6.5.0",
     "server": {
         "executables": {

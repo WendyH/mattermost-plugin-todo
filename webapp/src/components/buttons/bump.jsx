@@ -6,7 +6,7 @@ const BumpButton = (props) => {
         <button
             className='btn btn-primary'
             onClick={() => props.bump(props.issueId)}
-        >{'Отклонить'}</button>
+        >{'Напомнить'}</button>
     );
 };
 
