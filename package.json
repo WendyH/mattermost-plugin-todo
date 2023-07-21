@@ -1,6 +1,14 @@
 {
   "dependencies": {
+    "eslint": "^7.32.0",
     "jest-canvas-mock": "^2.5.2",
-    "sass": "^1.63.6"
+    "node-sass": "^9.0.0",
+    "redux-offline": "^2.0.0",
+    "sass": "^1.63.6",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-react-hooks": "^5.0.0-canary-9f4fbec5f-20230717"
   }
 }
